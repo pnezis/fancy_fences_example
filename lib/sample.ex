@@ -1,38 +1,66 @@
-defmodule InjectedDocs do
+defmodule Sample do
   @moduledoc """
-  Documentation for `InjectedDocs`.
+  A sample module using fence processors all over the place.
+
+  ## Inspect processor
+
+  You can use `inspect` processor to print the result of an
+  elixir code snippet.
+
+  ```inspect
+  list = [1, 2, 3, 4]
+  Sample.update_list(list)
+  ```
+
+  This is useful:
+
+  - In plain markdown files
+  - When you want to provide examples of the current module's function
+  and normal interpolation does not work.
   """
+
+  @doc false
+  def update_list(list) do
+    Enum.map(list, fn x -> 2 * x end)
+  end
+
+  @doc """
+  A `NimbleOptions` schema
+
+  ```nimble_options
+  Sample.schema()
+  ```
+  """
+  def schema do
+    [
+      name: [
+        required: true,
+        type: :atom,
+        doc: "See also `echo_name/1`"
+      ]
+    ]
+  end
+
+  @doc """
+  My dummy function
+  """
+  def echo_name(name) do
+    name
+  end
 
   alias VegaLite, as: Vl
 
   @doc """
-  Dummy scatter plot.
+  An iris scatter plot
 
-  Notice that it contains an `embed` fenced block which will
-
-  * Evaluate the inline code during docs generation
-  * Replace it with
-    * A fenced `elixir` block containing the input code
-    * A fenced `vega-lite` block for displaying the graph
-
-  ```embed::vl
-  InjectedDocs.scatter("petal_width", "petal_length")
-  |> VegaLite.to_spec()
-  ```
-
-  You can add any valid elixir code in the fences as long as it returns
-  a valid VegaLite map. Also embedders can support options which can modify
-  the appearence of the output. For example:
-
-  ```embed::vl-details
+  ```vega-lite
   alias VegaLite, as: Vl
 
   x = "petal_width"
   y = "sepal_width"
 
-  InjectedDocs.scatter(x, y)
+  Sample.scatter(x, y)
   |> Vl.encode_field(:color, "species", [])
-  |> Vl.to_spec()
   ```
   """
   def scatter(x, y) do
@@ -52,7 +80,7 @@ defmodule InjectedDocs do
 
   ## Example
 
-  ```embed::mermaid
+  ```mermaid
   # Let's create a simple graph first
   graph = :digraph.new()
 
@@ -68,7 +96,7 @@ defmodule InjectedDocs do
   :digraph.add_edge(graph, :d, :c)
 
   # Use digraph_to_mermaid/1 to convert it to mermaid chart
-  InjectedDocs.digraph_to_mermaid(graph)
+  Sample.digraph_to_mermaid(graph)
   ```
   """
   def digraph_to_mermaid(graph) do
@@ -93,4 +121,10 @@ defmodule InjectedDocs do
     #{edges}
     """
   end
+
+  @doc """
+  ```markdown
+  ```
+  """
+  def foo, do: 1
 end

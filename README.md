@@ -15,10 +15,12 @@ and enjoy
 ## Embedded code blocks
 
 Embedded code blocks work also on plain markdown files
-out of the box:
+out of the box.
 
-```embed::inspect
-map = %{
+### `inspect` processor
+
+```inspect
+person = %{
   name: "Test",
   age: 35,
   children: [
@@ -31,5 +33,37 @@ map = %{
   ]
 }
 
-Jason.encode!(map, pretty: true)
+Map.put(person, "nationality", "Unknown")
+|> List.duplicate(2)
+```
+
+### `markdown` processor
+
+Autolinks should also work:
+
+```markdown
+
+```
+
+### `vega-lite` processor
+
+As well as vega lite plots (this is an example from `VegaLite` docs):
+
+```vega-lite
+alias VegaLite, as: Vl
+
+Vl.new()
+|> Vl.data_from_url("https://vega.github.io/editor/data/weather.csv")
+|> Vl.transform(filter: "datum.location == 'Seattle'")
+|> Vl.concat([
+  Vl.new()
+  |> Vl.mark(:bar)
+  |> Vl.encode_field(:x, "date", time_unit: :month, type: :ordinal)
+  |> Vl.encode_field(:y, "precipitation", aggregate: :mean),
+  Vl.new()
+  |> Vl.mark(:point)
+  |> Vl.encode_field(:x, "temp_min", bin: true)
+  |> Vl.encode_field(:y, "temp_max", bin: true)
+  |> Vl.encode(:size, aggregate: :count)
+])
 ```

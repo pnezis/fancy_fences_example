@@ -23,9 +23,10 @@ defmodule InjectedDocs.MixProject do
   defp deps do
     [
       # {:ex_doc, path: "../ex_doc", only: :dev, runtime: false},
-      {:ex_doc, github: "pnezis/ex_doc", branch: "poc-embed-code", only: :dev, runtime: false},
+      {:ex_doc, github: "pnezis/ex_doc", branch: "fence-processors", only: :dev, runtime: false},
       {:vega_lite, "~> 0.1.7"},
-      {:jason, "~> 1.3"}
+      {:jason, "~> 1.3"},
+      {:nimble_options, "~> 1.0"}
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
     ]
@@ -36,12 +37,14 @@ defmodule InjectedDocs.MixProject do
       extras: [
         "README.md"
       ],
-      embedders: [
-        inspect: {Embedders, :io_inspect, []},
-        vl: {Embedders, :vl, []},
-        "vl-details": {Embedders, :vl, [mode: :details]},
-        mermaid: {Embedders, :mermaid, []}
-      ],
+      fence_processors: %{
+        "inspect" => {FenceProcessors, :io_inspect, []},
+        "nimble_options" => {FenceProcessors, :nimble_options, []},
+        "vega-lite" => {FenceProcessors, :vl, []},
+        "mermaid" => {FenceProcessors, :mermaid, []},
+        "markdown" => {FenceProcessors, :markdown, []},
+        "fence_processor" => {FenceProcessors, :fence_processor_doc, []}
+      },
       before_closing_body_tag: fn
         :html ->
           """
