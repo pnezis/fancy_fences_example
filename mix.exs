@@ -23,7 +23,7 @@ defmodule InjectedDocs.MixProject do
   defp deps do
     [
       {:ex_doc, "~> 0.29", only: :dev, runtime: false},
-      {:fancy_fences, github: "pnezis/fancy_fences", only: :dev, runtime: false},
+      {:fancy_fences, "~> 0.1", only: :dev, runtime: false},
       {:vega_lite, "~> 0.1.7"},
       {:jason, "~> 1.3"},
       {:nimble_options, "~> 1.0"}
