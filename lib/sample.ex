@@ -7,10 +7,15 @@ defmodule Sample do
   You can use `inspect` processor to print the result of an
   elixir code snippet.
 
-  ```inspect
-  list = [1, 2, 3, 4]
-  Sample.update_list(list)
-  ```
+  Within am admonition block:
+
+  > #### `inspect` Example {: .info}
+  >
+  > ```inspect
+  > list = [1, 2, 3, 4]
+  > Sample.update_list(list)
+  > ```
+
 
   This is useful:
 

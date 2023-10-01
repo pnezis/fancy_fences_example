@@ -22,7 +22,7 @@ defmodule InjectedDocs.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:ex_doc, "~> 0.29", only: :dev, runtime: false},
+      {:ex_doc, "~> 0.30", only: :dev, runtime: false},
       {:fancy_fences, github: "pnezis/fancy_fences", only: :dev, runtime: false},
       {:vega_lite, "~> 0.1.7"},
       {:jason, "~> 1.3"},
