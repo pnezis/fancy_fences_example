@@ -53,7 +53,7 @@ defmodule Sample do
   @doc """
   An iris scatter plot
 
-  ```vega-lite
+  ```vl
   alias VegaLite, as: Vl
 
   x = "petal_width"

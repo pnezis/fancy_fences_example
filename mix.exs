@@ -23,7 +23,7 @@ defmodule InjectedDocs.MixProject do
   defp deps do
     [
       {:ex_doc, "~> 0.29", only: :dev, runtime: false},
-      {:fancy_fences, "~> 0.1", only: :dev, runtime: false},
+      {:fancy_fences, github: "pnezis/fancy_fences", only: :dev, runtime: false},
       {:vega_lite, "~> 0.1.7"},
       {:jason, "~> 1.3"},
       {:nimble_options, "~> 1.0"}
@@ -39,12 +39,12 @@ defmodule InjectedDocs.MixProject do
         {FancyFences,
          [
            fences: %{
-             "inspect" => {FenceProcessors, :io_inspect, []},
+             "inspect" => {FancyFences.Processors, :inspect_code, []},
+             "vl" => {FenceProcessors, :vl, []},
              "nimble_options" => {FenceProcessors, :nimble_options, []},
-             "vega-lite" => {FenceProcessors, :vl, []},
              "mermaid" => {FenceProcessors, :mermaid, []},
-             "markdown" => {FenceProcessors, :markdown, []},
-             "fence_processor" => {FenceProcessors, :fence_processor_doc, []}
+             "fence_processor" => {FenceProcessors, :fence_processor_doc, []},
+             "markdown" => {FenceProcessors, :markdown, []}
            }
          ]},
       before_closing_body_tag: fn
