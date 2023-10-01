@@ -1,6 +1,7 @@
-# README
+# About
 
-Proof of concept for embedded markdown code blocks.
+An example using [`fancy_fences`](https://github.com/pnezis/fancy_fences) with various
+fence processors defined.
 
 ## Installation
 
@@ -10,12 +11,11 @@ Run
 mix docs -f html
 ```
 
-and enjoy
+and open the generated docs.
 
 ## Embedded code blocks
 
-Embedded code blocks work also on plain markdown files
-out of the box.
+Embedded code blocks work also on plain markdown files out of the box.
 
 ### `inspect` processor
 
@@ -49,7 +49,7 @@ Autolinks should also work:
 
 As well as vega lite plots (this is an example from `VegaLite` docs):
 
-```vega-lite
+```vl
 alias VegaLite, as: Vl
 
 Vl.new()
